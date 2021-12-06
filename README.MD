@@ -1,11 +1,8 @@
-#This needs to be added in qb-core/shared.lua on the items
+Rental Papers Item - qb-core/shared.lua
 
 ["rentalpapers"]  = {["name"] = "rentalpapers", ["label"] = "Papeles de renta", ["weight"] = 0, ["type"] = "item", ["image"] = "stickynote.png", ["unique"] = true, ["useable"] = false, ["shouldClose"] = false, ["combinable"] = nil, ["description"] = "Yea, this is my car i can proove it!"},
 
-#Next we are gonna add something to our inventory
-
-
-We are gonna go to our qb-inventory/html/js/app.js we have to find something like this
+Rental Papers Item pt2 - qb-inventory/html/js/app.js 
 
 } else if (itemData.name == "stickynote") {
             $(".item-info-title").html('<p>' + itemData.label + '</p>')
@@ -15,7 +12,7 @@ at the bottom of it add this
 
 } else if (itemData.name == "rentalpapers") {
             $(".item-info-title").html('<p>' + itemData.label + '</p>')
-            $(".item-info-description").html('<p><strong>Nombre: </strong><span>'+ itemData.info.firstname + '</span></p><p><strong>Apellido: </strong><span>'+ itemData.info.lastname+ '</span></p><p><strong>Placa: </strong><span>'+ itemData.info.plate + '<p><strong>Modelo: </strong><span>'+ itemData.info.model +'</span></p>');
+            $(".item-info-description").html('<p><strong>Name: </strong><span>'+ itemData.info.firstname + '</span></p><p><strong>Last Name: </strong><span>'+ itemData.info.lastname+ '</span></p><p><strong>Plate: </strong><span>'+ itemData.info.plate + '<p><strong>Model: </strong><span>'+ itemData.info.model +'</span></p>');
 
 it should look like this
 
@@ -24,12 +21,22 @@ it should look like this
             $(".item-info-description").html('<p>' + itemData.info.label + '</p>');
         } else if (itemData.name == "rentalpapers") {
             $(".item-info-title").html('<p>' + itemData.label + '</p>')
-            $(".item-info-description").html('<p><strong>Nombre: </strong><span>'+ itemData.info.firstname + '</span></p><p><strong>Apellido: </strong><span>'+ itemData.info.lastname+ '</span></p><p><strong>Placa: </strong><span>'+ itemData.info.plate + '<p><strong>Modelo: </strong><span>'+ itemData.info.model +'</span></p>');
+            $(".item-info-description").html('<p><strong>Name: </strong><span>'+ itemData.info.firstname + '</span></p><p><strong>Last Name: </strong><span>'+ itemData.info.lastname+ '</span></p><p><strong>Plate: </strong><span>'+ itemData.info.plate + '<p><strong>Model: </strong><span>'+ itemData.info.model +'</span></p>');
 
 
-There are some things in spanish here just change them
+Adding More Cars / Changing vehicles - Edit / Change qb-menu items
 
-Nombre = name
-Apellido = last name
-Placa =  Plate
-Modelo = Model
+Example :         
+        {
+            id = 2,
+            header = "CAR NAME",
+            txt = "$PRICE",
+            params = {
+                event = "qb-rental:spawncar",
+                args = {
+                    model = 'MODEL NAME',
+                    money = PRICE,
+                }
+            }
+        },
+
