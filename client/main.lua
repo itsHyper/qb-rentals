@@ -14,7 +14,7 @@ RegisterNetEvent('qb-rental:openMenu', function()
             params = {
                 event = "qb-rental:spawncar",
                 args = {
-                    model = 'bison',
+                    model = 'asterope',
                     money = 250,
                 }
             }
@@ -71,6 +71,23 @@ CreateNPC = function()
     TaskStartScenarioInPlace(created_ped, 'WORLD_HUMAN_CLIPBOARD', 0, true)
 end
 
+CreateThread(function()
+    local models = {
+      'a_m_y_business_03',
+    }
+    exports['qb-target']:AddTargetModel(models, { -- This defines the models, can be a string or a table
+        options = {
+            {
+                type = "client",
+                event = "qb-rental:openMenu",
+                icon = "fas fa-car",
+                label = "Rent Vehicle",
+            },
+        },
+        distance = 4.0
+    })
+  end)
+
 
 RegisterNetEvent('qb-rental:spawncar')
 AddEventHandler('qb-rental:spawncar', function(data)
@@ -107,7 +124,6 @@ AddEventHandler('onResourceStop', function(resourceName)
         SetBlipScale  (blip, 0.5)
         SetBlipColour (blip, 77)
         SetBlipAsShortRange(blip, true)
-
         BeginTextCommandSetBlipName("STRING")
         AddTextComponentString('Vehicle Rental')
         EndTextCommandSetBlipName(blip)
