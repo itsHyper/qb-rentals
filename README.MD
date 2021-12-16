@@ -1,9 +1,10 @@
 Rental Papers Item - qb-core/shared.lua
-
+```
 ["rentalpapers"]  = {["name"] = "rentalpapers", ["label"] = "Papeles de renta", ["weight"] = 0, ["type"] = "item", ["image"] = "stickynote.png", ["unique"] = true, ["useable"] = false, ["shouldClose"] = false, ["combinable"] = nil, ["description"] = "Yea, this is my car i can proove it!"},
-
+```
 Rental Papers Item pt2 - qb-inventory/html/js/app.js 
 
+```
 } else if (itemData.name == "stickynote") {
             $(".item-info-title").html('<p>' + itemData.label + '</p>')
             $(".item-info-description").html('<p>' + itemData.info.label + '</p>');
@@ -22,11 +23,12 @@ it should look like this
         } else if (itemData.name == "rentalpapers") {
             $(".item-info-title").html('<p>' + itemData.label + '</p>')
             $(".item-info-description").html('<p><strong>Name: </strong><span>'+ itemData.info.firstname + '</span></p><p><strong>Last Name: </strong><span>'+ itemData.info.lastname+ '</span></p><p><strong>Plate: </strong><span>'+ itemData.info.plate + '<p><strong>Model: </strong><span>'+ itemData.info.model +'</span></p>');
-
+```
 
 Adding More Cars / Changing vehicles - Edit / Change qb-menu items
 
-Example :         
+Example : 
+```
         {
             id = 2,
             header = "CAR NAME",
@@ -40,3 +42,4 @@ Example :
             }
         },
 
+```
