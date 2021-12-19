@@ -8,6 +8,14 @@ RegisterNetEvent('qb-rental:openMenu', function()
             isMenuHeader = true,
         },
         {
+            id = 1,
+            header = "Return Vehicle ",
+            txt = "Return your rented vehicle.",
+            params = {
+                event = "qb-rental:return",
+            }
+        },
+        {
             id = 2,
             header = "Asterope",
             txt = "$250.00",
@@ -21,7 +29,7 @@ RegisterNetEvent('qb-rental:openMenu', function()
         },
         {
             id = 3,
-            header = "Bison",
+            header = "Bison ",
             txt = "$500.00",
             params = {
                 event = "qb-rental:spawncar",
@@ -32,7 +40,7 @@ RegisterNetEvent('qb-rental:openMenu', function()
             }
         },
         {
-            id = 3,
+            id = 4,
             header = "Sanchez",
             txt = "$750.00",
             params = {
@@ -71,24 +79,6 @@ CreateNPC = function()
     TaskStartScenarioInPlace(created_ped, 'WORLD_HUMAN_CLIPBOARD', 0, true)
 end
 
-CreateThread(function()
-    local models = {
-      'a_m_y_business_03',
-    }
-    exports['qb-target']:AddTargetModel(models, { -- This defines the models, can be a string or a table
-        options = {
-            {
-                type = "client",
-                event = "qb-rental:openMenu",
-                icon = "fas fa-car",
-                label = "Rent Vehicle",
-            },
-        },
-        distance = 4.0
-    })
-  end)
-
-
 RegisterNetEvent('qb-rental:spawncar')
 AddEventHandler('qb-rental:spawncar', function(data)
     local money =data.money
@@ -108,23 +98,25 @@ AddEventHandler('qb-rental:spawncar', function(data)
     TriggerServerEvent('qb-rental:rentalpapers', plate, vehicleLabel, money)
 end)
 
-AddEventHandler('onResourceStop', function(resourceName)
-    if (GetCurrentResourceName() == resourceName) then
-        DeleteEntity(created_ped)
-        
-    end
-  end)
-  
-  
-  CreateThread(function()
-    Wait(0)
-        blip = AddBlipForCoord(111.0112, -1088.67, 29.302)
-        SetBlipSprite (blip, 56)
-        SetBlipDisplay(blip, 4)
-        SetBlipScale  (blip, 0.5)
-        SetBlipColour (blip, 77)
-        SetBlipAsShortRange(blip, true)
-        BeginTextCommandSetBlipName("STRING")
-        AddTextComponentString('Vehicle Rental')
-        EndTextCommandSetBlipName(blip)
+RegisterNetEvent('qb-rental:return')
+AddEventHandler('qb-rental:return', function()
+    local Player = QBCore.Functions.GetPlayerData()
+    QBCore.Functions.Notify('Returned vehicle!', 'success')
+    TriggerServerEvent('qb-rental:removepapers')
+    local car = GetVehiclePedIsIn(PlayerPedId(),true)
+    NetworkFadeOutEntity(car, true,false)
+    Citizen.Wait(2000)
+    QBCore.Functions.DeleteVehicle(car)
+end)
+
+CreateThread(function()
+    blip = AddBlipForCoord(111.0112, -1088.67, 29.302)
+    SetBlipSprite (blip, 56)
+    SetBlipDisplay(blip, 4)
+    SetBlipScale  (blip, 0.5)
+    SetBlipColour (blip, 77)
+    SetBlipAsShortRange(blip, true)
+    BeginTextCommandSetBlipName("STRING")
+    AddTextComponentString('Vehicle Rental')
+    EndTextCommandSetBlipName(blip)
 end)
