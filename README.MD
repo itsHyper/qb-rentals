@@ -1,6 +1,6 @@
 # Vehicle Rental Script for QBCore Framework
 
-* [Overtime Development](https://discord.gg/MeBxzrGtyYt)
+* [Overtime Development](https://discord.gg/MeBxzrGtyY)
 * [QBCore Discord](discord.gg/qbcore)
 * [QBCore Framework](https://github.com/qbcore-framework)
 
