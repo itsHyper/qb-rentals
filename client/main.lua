@@ -1,5 +1,5 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-
+local SpawnVehicle = false
 
 RegisterNetEvent('qb-rental:openMenu', function()
     exports['qb-menu']:openMenu({
@@ -89,6 +89,7 @@ AddEventHandler('qb-rental:spawncar', function(data)
         TaskWarpPedIntoVehicle(player, vehicle, -1)
         TriggerEvent("vehiclekeys:client:SetOwner", GetVehicleNumberPlateText(vehicle))
         SetVehicleEngineOn(vehicle, true, true)
+        SpawnVehicle = true
     end, vector4(111.4223, -1081.24, 29.192,340.0), true)
     Wait(1000)
     local vehicle = GetVehiclePedIsIn(player, false)
@@ -100,13 +101,18 @@ end)
 
 RegisterNetEvent('qb-rental:return')
 AddEventHandler('qb-rental:return', function()
-    local Player = QBCore.Functions.GetPlayerData()
-    QBCore.Functions.Notify('Returned vehicle!', 'success')
-    TriggerServerEvent('qb-rental:removepapers')
-    local car = GetVehiclePedIsIn(PlayerPedId(),true)
-    NetworkFadeOutEntity(car, true,false)
-    Citizen.Wait(2000)
-    QBCore.Functions.DeleteVehicle(car)
+    if SpawnVehicle then
+        local Player = QBCore.Functions.GetPlayerData()
+        QBCore.Functions.Notify('Returned vehicle!', 'success')
+        TriggerServerEvent('qb-rental:removepapers')
+        local car = GetVehiclePedIsIn(PlayerPedId(),true)
+        NetworkFadeOutEntity(car, true,false)
+        Citizen.Wait(2000)
+        QBCore.Functions.DeleteVehicle(car)
+    else 
+        QBCore.Functions.Notify("No vehicle to return", "error")
+    end
+    SpawnVehicle = false
 end)
 
 CreateThread(function()
