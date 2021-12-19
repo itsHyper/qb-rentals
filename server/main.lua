@@ -16,3 +16,13 @@ AddEventHandler('qb-rental:rentalpapers', function(plate, model, money)
     Player.Functions.RemoveMoney('bank', money, "vehicle-rental")
 end)
 
+
+RegisterServerEvent('qb-rental:removepapers')
+AddEventHandler('qb-rental:removepapers', function(plate, model, money)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    TriggerClientEvent('inventory:client:ItemBox', src,  QBCore.Shared.Items["rentalpapers"], 'remove')
+    Player.Functions.RemoveItem('rentalpapers', 1, false, info)
+end)
+
+
