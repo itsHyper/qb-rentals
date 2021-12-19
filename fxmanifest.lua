@@ -1,8 +1,8 @@
 fx_version 'cerulean'
 game 'gta5'
 
-description 'QB-Rental'
-author 'elfishii'
+description 'qb-rental'
+author 'Hyper'
 version '1.0.0'
 
 
