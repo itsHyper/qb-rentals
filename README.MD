@@ -9,6 +9,8 @@
 * [qb-target](https://github.com/BerkieBb/qb-target)
 * [qb-menu](https://github.com/qbcore-framework/qb-menu)
 
+## Preview
+https://streamable.com/1r6iqa
 
 # Installation
 
@@ -47,3 +49,16 @@
             $(".item-info-title").html('<p>' + itemData.label + '</p>')
             $(".item-info-description").html('<p><strong>Name: </strong><span>'+ itemData.info.firstname + '</span></p><p><strong>Last Name: </strong><span>'+ itemData.info.lastname+ '</span></p><p><strong>Plate: </strong><span>'+ itemData.info.plate + '<p><strong>Model: </strong><span>'+ itemData.info.model +'</span></p>');
 ```
+# Change Logs
+
+### 1.2
+* Added Return Option 
+
+### 1.1
+* Added qb-target export / qb-menu
+
+### 1.0
+* Initial release
+
+# Issues and Suggestions
+Please use the GitHub issues system to report issues or make suggestions, when making suggestion, please keep [Suggestion] in the title to make it clear that it is a suggestion.
