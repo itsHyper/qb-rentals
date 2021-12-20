@@ -8,11 +8,16 @@
 # Dependencies
 * [qb-target](https://github.com/BerkieBb/qb-target)
 * [qb-menu](https://github.com/qbcore-framework/qb-menu)
+# If not using QB-Target also add dependancy below for Polyzone
+* [PolyZone] (https://github.com/mkafrin/PolyZone)
+
 
 ## Preview
 https://streamable.com/1r6iqa
 
 # Installation
+
+*** If using QB-target comment out (lines 6-22) in the Client.main and both polyzone refrences in the fxmanifest (lines 12-13), If not using QB-target ignore target model option below**
 
 * Find this in **qb-target/config**
 * Put this in **"Config.TargetModels"** (more reliable to always keep target models in config) 
